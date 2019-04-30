@@ -1,9 +1,10 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:ratings)
   end
 
   def show
+
   end
   
 end

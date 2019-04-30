@@ -9,4 +9,5 @@
 </div>
 <% @movies.each do |movie| %>
   <p><%= link_to "#{movie.id}. #{movie.title}", movie_path(movie) %></p>
+  <%# <p> <%= movie.avg_rating %> %>
 <% end %>
