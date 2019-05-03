@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
+  root to: 'movies#index'
   devise_for :users
   
   resources :movies
+
+  
   
   defaults format: :json do
-    get '/ratings', to: 'ratings#index'
+    resources :ratings
   end
 
-  root to: 'movies#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

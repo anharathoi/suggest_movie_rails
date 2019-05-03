@@ -1,4 +1,3 @@
-<h1>All movies </h1>
 <div class="login-nav">
   <% if user_signed_in? %>
     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
@@ -7,7 +6,22 @@
     <%= link_to 'Sign Up', new_user_registration_path %>
   <% end %>
 </div>
-<% @movies.each do |movie| %>
-  <p><%= link_to "#{movie.id}. #{movie.title}", movie_path(movie) %></p>
-  <%# <p> <%= movie.avg_rating %> %>
-<% end %>
+
+<div class="movies">
+  <%= form_for @rating, url: ratings_path do |f| %>
+    <% @movies.each_with_index do |movie, i| %>
+      <%= link_to "#{i+1}. #{movie.title}", movie_path(movie) %> | Rating: <%= movie.avg_rating %> | 
+      <input type="hidden" name="movie_id" value="<%= movie.id %>">
+      <% id = "#{movie.id}" %>
+      <select name="rating[<%= id %>]">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <hr>
+    <% end %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
