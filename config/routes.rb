@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   
   resources :movies
 
+  resources :ratings  
   
-  
-  defaults format: :json do
-    resources :ratings
-  end
+  # defaults format: :json do
+  #   resources :ratings
+  # end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

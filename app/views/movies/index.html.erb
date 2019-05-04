@@ -1,12 +1,4 @@
-<div class="login-nav">
-  <% if user_signed_in? %>
-    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-  <% else %>
-    <%= link_to('Login', new_user_session_path)  %> | 
-    <%= link_to 'Sign Up', new_user_registration_path %>
-  <% end %>
-</div>
-
+<% if user_signed_in? %>
 <div class="movies">
   <%= form_for @rating, url: ratings_path do |f| %>
     <% @movies.each_with_index do |movie, i| %>
@@ -25,3 +17,6 @@
     <%= f.submit "Submit" %>
   <% end %>
 </div>
+<% else %>
+  <%= render partial:'layouts/shared/how-it-works'%>
+<% end %>

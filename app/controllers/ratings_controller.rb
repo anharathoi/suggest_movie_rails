@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
   def index
-    @ratings = Rating.limit(10)
+    @results = Recommendation.new(current_user.id.to_s).recommend_movies
   end
 
   def create
@@ -8,7 +8,7 @@ class RatingsController < ApplicationController
     ratings.each do |movie_id, rating| ## because as per the form, movie is key and rating is value
       current_user.ratings.create(movie_id: movie_id, user_rating: rating)
     end
-    redirect_to movies_path
+    redirect_to ratings_path
   end
 
   private

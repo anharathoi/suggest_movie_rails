@@ -1,9 +1,17 @@
-.login-nav {
-  background: #f4f4f4;
+.navbar {
+  background: #0a001a;
   margin: 0 0 20px 0;
   padding: 15px;
-  border-bottom: 1px #cac7c7 solid;
+  border-bottom: rgb(250, 211, 84) 4px solid;;
+  color: #FFC500;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   font-size: 12px;
 }
+ .login-nav a{
+   color: #f4f4f4;
+ }
+
+ .logo {
+  font-family: 'Francois One', sans-serif;
+ }
