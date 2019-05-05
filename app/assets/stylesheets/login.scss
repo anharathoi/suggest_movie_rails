@@ -1,0 +1,16 @@
+.login-form {
+  margin: 0 40px;
+    input {
+      width: 100%;
+    }
+    .remember-me {
+      // background: red;
+      input {
+        width: 10%;
+      }
+    }
+    input[type=submit]{
+      margin: 10px 0;
+      width: 100px;
+    }
+  }

@@ -1,11 +1,18 @@
 class Recommendation
-  def initialize(user_id)
+  attr_accessor :scores
+  def initialize(user_id, user_scores)
     @scores = cache_rating_scores
     @user_id = user_id
+    @user_scores = user_scores
   end
 
   def recommend_movies
+    current_user_rating_hash
     Pearson.recommendations(@scores, @user_id)
+  end
+
+  def current_user_rating_hash
+    @scores[@user_id] = @user_scores.pluck(:movie_id,:user_rating).to_h
   end
 
   def cache_rating_scores
@@ -13,11 +20,7 @@ class Recommendation
       users = User.includes(:ratings)
       scores = {}
       users.each do |user|
-        scores[user.id.to_s] = {}
-        ratings_by_this_user = user.ratings
-        ratings_by_this_user.each do |row|
-          scores[user.id.to_s][row.movie_id.to_s] = row.user_rating
-        end
+        scores[user.id.to_s] = user.ratings.pluck(:movie_id,:user_rating).to_h
       end
       scores
     end
